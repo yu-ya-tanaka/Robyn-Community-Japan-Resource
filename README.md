@@ -1,2 +1,1 @@
-# robyn_community_japan
-TBD
+# Robyn-Community-Japan-Resource
