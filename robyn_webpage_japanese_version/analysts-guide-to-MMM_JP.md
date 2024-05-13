@@ -495,13 +495,12 @@ Robynは、最適な結果を自動的に返すことにより、モデル選択
 
 R2乗値が低いモデルは、改善できる可能性が高いです。改善のための一般的な方法は、より包括的な説明変数を利用すること、つまりより大きな有料メディアチャネルを分割すること、または目的変数を説明する可能性のある追加のベースライン（非メディア）変数を含めることが含まれます。
 
-<img alt="modelfitchart" src={https://facebookexperimental.github.io/Robyn/img/modelfitchart.png}/>
+![modelfitchart](https://facebookexperimental.github.io/Robyn/img/modelfitchart.png)
 
 
 <em>目的変数への寄与度</em>：実際のデータとモデル化されたデータを比較できることに加えて、モデルが導き出した各説明変数の目的変数への寄与度を確認することができます。下のチャートは、このモデルに含まれた他のすべての変数と比較した、売上に対するFacebookの貢献の例を示しています。例えば、下のチャートで、Facebookの2.2%は、総売上の2.2%がFacebookによってもたらされていることを意味します。
 
-<img alt="modeldecompchart" src={https://facebookexperimental.github.io/Robyn/img/modeldecompchart.png}/>
-
+![modeldecompchart](https://facebookexperimental.github.io/Robyn/img/modeldecompchart.png)
 
 <em>支出のシェア vs 効果のシェアとトータルROI</em>：
 
@@ -514,20 +513,15 @@ R2乗値が低いモデルは、改善できる可能性が高いです。改善
   - ROIは高いが、貢献度や支出額が低いチャネルは、リターンが高く、支出額が低く効果が飽和していない可能性が高いため、支出額を増やせる可能性がある；
   - ROIは低いが、貢献度と支出額が高いチャネルは、成績不振のように見えるので、支出を減らすべきかもしれない。重要なチャネルであることも踏まえ、このチャネルを最適化する方法を検討しましょう。
 
-
-<img alt="budgetallocatorecochart" src={https://facebookexperimental.github.io/Robyn/img/budgetallocatorecochart.png}/>
-
+![budgetallocatorecochart](https://facebookexperimental.github.io/Robyn/img/budgetallocatorecochart.png)
 
 <em>レスポンスカーブ</em>：飽和曲線（サチュレーションカーブ）と呼ばれることもあるレスポンスカーブは、特定のチャネルの支出が最適なレベルにあるか、あるいは飽和に近づいているかを示し、それゆえ予算再配分の可能性を示唆します。曲線が変曲点に達し、水平/平坦な傾斜になるのが早ければ早いほど、そのチャネルは支出を追加するごとに飽和していきます。各チャネルのレスポンスカーブを並べて比較することで、成果を改善するために、飽和したチャネルから飽和していないチャネルに費用を再配分する機会についての洞察を得ることができます：
 
-<img alt="saturationlineschart" src={https://facebookexperimental.github.io/Robyn/img/saturationlineschart.png}/>
-
+![saturationlineschart](https://facebookexperimental.github.io/Robyn/img/saturationlineschart.png)
 
 <em>広告の減衰率（アドストック率）</em>：このチャートは、各チャネルの平均的な減衰率を表しています。減衰率が高いほど、特定のチャネルが最初に露出した後の効果が長いことを意味します。
 
-<img alt="adstockinglineschart" src={https://facebookexperimental.github.io/Robyn/img/adstockinglineschart.png}/>
-
-
+![adstockinglineschart](https://facebookexperimental.github.io/Robyn/img/adstockinglineschart.png)
 
 <u>予算配分</u></u></p
 
@@ -547,5 +541,4 @@ Robynの予算配分ツールは、非線形飽和関数（Hill）を解析的�
 - <em>初期の平均的な効果 vs 最適化後の平均的な効果</em>：上記と同様に、このグラフは初期と最適化後の期待効果を示します。当初の効果と最適化された効果の差は、前の箇条書きで示したように予算を切り替えた場合に予想される売上の変化の合計です。
 - <em>チャネル別のレスポンスカーブと平均支出</em>：<u>マーケティングミックスモデルのアウトプットの解釈</u>で説明したように、レスポンスカーブは、チャネルがどの程度飽和しているか、また、オリジナルと最適化された支出に対して、チャネルが曲線上のどの位置にあるかを示します。
 
-<img alt="予算配分チャート" src={https://facebookexperimental.github.io/Robyn/img/optimizer_new.png} /></img/>
 ![予算配分チャート](https://facebookexperimental.github.io/Robyn/img/optimizer_new.png)
