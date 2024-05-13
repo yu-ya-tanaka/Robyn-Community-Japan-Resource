@@ -1,10 +1,5 @@
+本資料はRobyn公式ページの[アナリスト向けMMMガイド](https://facebookexperimental.github.io/Robyn/docs/analysts-guide-to-MMM/)の日本語版です。
 ---
-id: analysts-guide-to-MMM
-    title: An Analyst's Guide to MMM
----
-
-import useBaseUrl from '@docusaurus/useBaseUrl';
-
 ## 背景
 ---
 
