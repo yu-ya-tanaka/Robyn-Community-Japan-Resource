@@ -166,7 +166,7 @@ MMMで適する般的なビジネス上の質問は以下のとおりです：
    - ブランド/ビジネスユニット：これは何種類のモデルを構築すべきかの判断基準になります。一般的には、ブランド/ビジネスユニットごとに分割することが多いです。たとえば、自動車メーカーの広告主はそれぞれの車種に対して別々のマーケティング活動を頻繁に行っているため、各車種ごとに別々の予測モデルを構築することが多いです。ブランド/ビジネスユニットごとのモデル分割方法方に正解はありませんが、どのように意思決定が下され、それが結果として反応するかを考慮するとと良いでしょう。たとえば、住宅ローンとクレジットカードなどの異なる金融サービス製品に対して別々のメディアプランとマーケティング予算が設定されている場合、これらは別々のモデルとして実行することは理にかなっています。
    - 説明変数の粒度：説明変数においても粒度の細かいデータを収集し、モデル化することも可能です。たとえば、歴史的にデジタルマーケティング活動は、メディア支出全体に占める割合が低いことが多かったため、一つの変数として合算した上でモデル化されていました。しかし、今日ではデジタルメディアはより細分化され、複雑化しているため、ベストプラクティスとして分割することが推奨です（下記を参照）。
 
-![exampleROI](useBaseUrl('/img/exampleROI.png'))
+![exampleROI](https://facebookexperimental.github.io/Robyn/img/exampleROI.png)
 
 最低限、デジタルメディアはチャネル/パブリッシャーレベルで分割することが望ましいです。これは運用やパフォーマンスがメディアごとに大きく異なるためです（例：SNS vs 検索 vs ディスプレイ）。また、特定のチャネル内でさらに詳細化することがベストプラクティスですが、これはモデルからどの粒度の示唆を得る必要があるかに依存します。例えば、Facebookの静止画広告と動画広告のパフォーマンスはどう異なるでしょうか？
 より粒度の細かいデータ（例：クリエイティブ単位）を収集し、最終的なモデルで使用しない場合でも、モデル結果を解釈する際に役立つ可能性があります。たとえば、モデルからFacebookのROIが$2である結果が得られた場合、それが$2である理由を説明するさらなる情報はありません。Facebookのメディアおよびクリエイティブの運用に関する追加情報が、Facebookのパフォーマンスをさらに詳細に分析するのに役立ち、運用の品質を事前に評価するためのスコアカードを構築することができます。
@@ -179,7 +179,7 @@ MMMで適する般的なビジネス上の質問は以下のとおりです：
   - 目的変数の時系列推移グラフを作成してみてください。大きなピークや谷を確認し、それらのピークや谷を引き起こした特定のアクティビティやイベントが何であったかを理解しましょう。
   - データスキーマを作成することも視覚化のための簡単だが役立つ方法です。下の例を参照してください。特定の変数はビジネスや業界ごとに異なります：
 
-![data schema](useBaseUrl('/img/dataSchema.png'))
+![data schema](https://facebookexperimental.github.io/Robyn/img/dataSchema.png)
 
 これが明確になれば、データ収集テンプレートを使用して関連するステークホルダーと共有することができます。
 
@@ -209,31 +209,30 @@ Preferred Partner Programを通じてベンダーはすでにMeta MMMフィー�
   - 以下のチャートは、収集されたデータ入力の記述統計または基本的な概要を提供します。これらのチャートは、欠損データや不完全なデータがあるかどうかを判断するのに役立ち、さらに調査が必要な特定の変数（メディアチャネルなど）を特定するのに役立ちます。
 
 
-<img alt="nonmissingdata" src={useBaseUrl('/img/nonmissingdata.png')} />
+<img alt="nonmissingdata" src={https://facebookexperimental.github.io/Robyn/img/nonmissingdata.png} />
 
-<img alt="observationsperyear" src={useBaseUrl('/img/observationsperyear.jpg')} />
+<img alt="observationsperyear" src={https://facebookexperimental.github.io/Robyn/img/observationsperyear.jpg} />
 
-<img alt="observationsperweek" src={useBaseUrl('/img/observationsperweek.jpg')} />
-
+<img alt="observationsperweek" src={https://facebookexperimental.github.io/Robyn/img/observationsperweek.jpg} />
 
 - 以下のチャートは、すべての異なる変数間の相関を分析するのに役立ちます：
     - チャート3aは、各説明変数どうしの相関を表します。これは、2つ以上の説明変数が互いに高い相関を持つときに起こる多重共線性を判断するのに役立ちます。多重共線性は、回帰モデルにとって問題となる可能性があり、特にすべての説明変数が互いに高い相関を持つ場合、モデルは異なる説明変数のそれぞれの影響を計算することが困難になります。これは、最終モデルにどの変数を含めるかを決めるのに役立ちます。
 
-<img alt="correlationchart" src={useBaseUrl('/img/correlationchart.png')}. />
 
+<img alt="correlationchart" src={https://facebookexperimental.github.io/Robyn/img/correlationchart.png}/>
 
   - あるいは、チャート3bは、目的変数との説明変数の間の相関を表します。これは、目的変数と説明変数の間に期待される関係があるかどうかを可視化するのに役立ち、特定の説明変数を含めるべきかどうかを決定するのに便利です。
 
 
-<img alt="correlationwithdependent" src={useBaseUrl('/img/correlationwithdependent.png')}. />
+<img alt="correlationwithdependent" src={https://facebookexperimental.github.io/Robyn/img/correlationwithdependent.png}/>
 
 
 - 次のチャートは、収集したデータの正確さをチェックするのに役立ちます。チャート4と5を使って、メディアプランと照らし合わせたり、メディア活動に精通した別の関係者からチェックしてもらうことで、収集したデータの信頼性を確かめるのに役立ちます。
 さらに、特定のビジネス上の質問に答えるためにより詳細なデータが必要となる場合、収集したデータがその質問に答えるために十分な粒度であると確認することが重要です。
 
-<img alt="mediaspendintime" src={useBaseUrl('/img/mediaspendintime.png')}. />
+<img alt="mediaspendintime" src={https://facebookexperimental.github.io/Robyn/img/mediaspendintime.png}/>
 
-<img alt="fbtrendbyyear" src={useBaseUrl('/img/fbtrendbyyear.png')}。/>
+<img alt="fbtrendbyyear" src={https://facebookexperimental.github.io/Robyn/img/fbtrendbyyear.png}/>
 
 
 最終的には、データレビュープロセスの最後に、収集されたすべてのデータが正確であることを確信を持った上で次のステップに進みましょう。
@@ -261,7 +260,7 @@ Robynコードでは、Prophetを使用して時系列のベースラインを�
 - **平日**：週内でキャプチャされる繰り返しの挙動です。これは日次データが利用可能な場合にのみ使用できます。
 - **祝日/イベント**：従属変数に大きな影響を与える祝日やその他のイベントです（例：国民の祝日、大規模なセール期間など）。
 
-![prophet_decomp](useBaseUrl('/img/prophet_decomp.png'))
+![prophet_decomp](https://facebookexperimental.github.io/Robyn/img/prophet_decomp.png))
 
 分析対象のビジネスのトレンド/季節性を示すデータがない場合、少なくともトレンドと季節性の要素についてProphetの使用を検討することをお勧めします。しかし、モデルや測定対象業界の複雑さが増すにつれて、他のデータソースを収集するなどして、時間ベースのトレンドを考慮する追加的な方法を検討する価値があるかもしれません。
 
@@ -294,7 +293,7 @@ Robynでは、[model window](https://facebookexperimental.github.io/Robyn/docs/f
 
 以下のような表を使用すると、モデルの構築方法を明確にするのに役立ちます：
 
-![data schema](useBaseUrl('/img/dataSchema.png'))
+![data schema](https://facebookexperimental.github.io/Robyn/img/dataSchema.png))
 
 モデルを設計したら、Robynに対しどのような仕様でモデリングを行なうかをコードのいくつかのパラメータで設定する必要があります：
 
@@ -363,7 +362,7 @@ Weibull PDFの柔軟性の高さと、Nevergradによる探索の自由度のた
 
 もし上記の説明が複雑すぎる場合は、Robynが提供するアドストックヘルパープロットを参照して、3つのアドストックオプション（Geometric、Weibull CDF、Weibull PDF）がパラメータの変化に応じてデータをどのように変換するかを視覚化することができます。以下に例のチャートを示します：
 
-![ad stock curves](useBaseUrl('/img/adstock-qs.png'))
+![ad stock curves](https://facebookexperimental.github.io/Robyn/img/adstock-qs.png))
 
 <em>飽和（サチュレーション）</em>
 
@@ -373,7 +372,7 @@ Robynは各メディアチャンネルの飽和を反映するためにHill関�
 
 ヘルパープロットで、パラメータが変化するにつれてHill関数がどのように変換されるかを確認することができます。以下にいくつかの例を示します：
 
-![hill curves](useBaseUrl('/img/hillFunction1.png'))
+![hill curves](https://facebookexperimental.github.io/Robyn/img/hillFunction1.png))
 
 ### モデリングのテクニック
 パラメータを設定し終えたら、最初のモデルを実行する時です。一度パラメータが設定されると、Robynのモデリングプロセスは自動化され、指定し仕様に従って結果が自動的に生成されます。この部分ではあまり介入が必要ありませんが、何が起こっているのか、どのように結果を解釈するかを理解することが重要です。
@@ -414,7 +413,7 @@ Robynは、最適な結果を自動的に返すことにより、モデル選択
 
 下のチャートは、Nevergradが「悪いモデル」（予測誤差が大きい/または非現実的なメディア効果）の大部分を排除する方法を詳述しています。チャート上の各ドットは探索されたモデルソリューション（ハイパーパラメータサンプリングの1単位）を表し、左下の角の線はパレートフロント1~3で、すべての反復から得られる最適なモデル結果が含まれています。2つの軸（x軸のNRMSEとy軸のDECOMP.RSSD）は最小化する必要がある2つの目的関数です。反復が進むにつれて、座標の左下隅に向かって収束が進んでいます。これは、Nevergradがモデル結果を最適な方向に向けて最適化を進めているる証拠です。
 
-![pareto_front](useBaseUrl('/img/pareto_front.png'))
+![pareto_front](https://facebookexperimental.github.io/Robyn/img/pareto_front.png))
 
 モデリングプロセスの最後に、RobynはNRMSEとDECOMP.RSSD関数に基づいて初期の出力として一連のモデルを生成します。ユーザーのビジネス知識と要件を考慮してチャートをレビューした後、ユーザーによって最終モデルを選択する必要があります。出力の解釈方法についての詳細は[ここ](https://facebookexperimental.github.io/Robyn/docs/features#outputs--diagnostics)で見ることができます。
 
@@ -430,7 +429,7 @@ Robynは、最適な結果を自動的に返すことにより、モデル選択
 - **ビジネスインサイトに関わるパラメータ**：モデルを評価する際、結果がビジネスコンテキストと一致するかどうかを確認するために、複数のビジネスインサイトに関わるパラメータを確認できます。ROI、アドストックおよびレスポンスカーブ、支出と効果のシェアなど、レビューするビジネスパラメータは複数あります。以前のMMM/MTAの結果、業界ベンチマークなど、パフォーマンスに関する強い事前知識がある場合も最終モデルを決定する際の良い参考となる可能性があります。
 - **ROASの収束**：下のチャートもモデルを選択するのに役立ちます。これは、時間をかけ反復を行うことで有料メディアのROIまたはROASがどのように進化するかを示しています。一部のチャネルでは、反復が進むことでROASの収ROASの分布にピークが発生しており、特定のチャネルの結果に対するより高い信頼を示しています。
 
-![roasdistributionchart](useBaseUrl('/img/roasdistributions.png'))
+![roasdistributionchart](https://facebookexperimental.github.io/Robyn/img/roasdistributions.png))
 
 - **統計指標**：複数のモデルがビジネスインサイトに関わるパラメータで非常に似た傾向を示している場合、最も統計指標（例えば、最高の調整済みR二乗、最低のNRMSEなど）が良いモデルを単に選択することができます。
 
@@ -447,7 +446,7 @@ Robynは、最適な結果を自動的に返すことにより、モデル選択
 
 以下の図は、1つのMMM候補モデルの補正プロセスを示しています。MetaのNevergrad勾配なし最適化プラットフォームを利用して、正規化平均二乗誤差（NRMSE）およびDecomp.RSSD比率に加え、MAPE(cal,fb)を第三の最適化スコアとして含めることができます。これにより、三つの最適化スコアに基づくパレート最適モデル候補の解の集合が得られます。この補正方法は、リフトテストを行っている他のメディアチャネルにも適用できます。補正されるチャネルが多ければ多いほど、MMMモデルの精度が向上します。
 
-![calibrationchart](useBaseUrl('/img/calibrationchart.png'))
+![calibrationchart](https://facebookexperimental.github.io/Robyn/img/calibrationchart.png))
 
 モデルの補正に役立つその他のヒント：
 - リフトテスト結果とMMMが測定しているもの（目的変数）と一致していることを確認してください（同じ粒度、同じ測定指標、同じ期間など）。
@@ -466,11 +465,11 @@ Robynは、最適な結果を自動的に返すことにより、モデル選択
 
 例えば、2017-2018年をカバーする初期時期を基にした5つの異なる時期のモデルリフレッシュを作成する例を以下に示します：
 
-![refresh-window](useBaseUrl('/img/refresh-window.png'))
+![refresh-window](https://facebookexperimental.github.io/Robyn/img/refresh-window.png))
 
 各リフレッシュ期間の結果セットも生成され、そこにはモデル内の各変数のROIや効果が含まれます。ベースライン変数は、すべてのProphet変数（例：トレンド、季節性、平日、祝日）とインターセプトの合計です。このプロットを基に、異なるビジネスレバーからの影響が時間とともにどのように変化するかを把握することができます。チャートはシミュレーションデータに基づくもであり、実際の意味を持ちません：
 
-![ROASrefreshchart](useBaseUrl('/img/ROASrefreshchart.png'))
+![ROASrefreshchart](https://facebookexperimental.github.io/Robyn/img/ROASrefreshchart.png))
 
 モデルのリフレッシュを行うことが常に最良のアプローチであるとは限りません。モデルの再構築がより適切なシナリオである場合もあります：
 - **新しいデータが多い場合**：初期モデルが100週をカバーしており、80週分の新しいデータをリフレッシュとして追加する必要がある場合、モデルを再構築する方が良いかもしれません。
@@ -496,12 +495,12 @@ Robynは、最適な結果を自動的に返すことにより、モデル選択
 
 R2乗値が低いモデルは、改善できる可能性が高いです。改善のための一般的な方法は、より包括的な説明変数を利用すること、つまりより大きな有料メディアチャネルを分割すること、または目的変数を説明する可能性のある追加のベースライン（非メディア）変数を含めることが含まれます。
 
-<img alt="modelfitchart" src={useBaseUrl('/img/modelfitchart.png')}。/>
+<img alt="modelfitchart" src={https://facebookexperimental.github.io/Robyn/img/modelfitchart.png}/>
 
 
 <em>目的変数への寄与度</em>：実際のデータとモデル化されたデータを比較できることに加えて、モデルが導き出した各説明変数の目的変数への寄与度を確認することができます。下のチャートは、このモデルに含まれた他のすべての変数と比較した、売上に対するFacebookの貢献の例を示しています。例えば、下のチャートで、Facebookの2.2%は、総売上の2.2%がFacebookによってもたらされていることを意味します。
 
-<img alt="modeldecompchart" src={useBaseUrl('/img/modeldecompchart.png')}。/>
+<img alt="modeldecompchart" src={https://facebookexperimental.github.io/Robyn/img/modeldecompchart.png}/>
 
 
 <em>支出のシェア vs 効果のシェアとトータルROI</em>：
@@ -516,17 +515,17 @@ R2乗値が低いモデルは、改善できる可能性が高いです。改善
   - ROIは低いが、貢献度と支出額が高いチャネルは、成績不振のように見えるので、支出を減らすべきかもしれない。重要なチャネルであることも踏まえ、このチャネルを最適化する方法を検討しましょう。
 
 
-<img alt="budgetallocatorecochart" src={useBaseUrl('/img/budgetallocatorecochart.png')}。/>
+<img alt="budgetallocatorecochart" src={https://facebookexperimental.github.io/Robyn/img/budgetallocatorecochart.png}/>
 
 
 <em>レスポンスカーブ</em>：飽和曲線（サチュレーションカーブ）と呼ばれることもあるレスポンスカーブは、特定のチャネルの支出が最適なレベルにあるか、あるいは飽和に近づいているかを示し、それゆえ予算再配分の可能性を示唆します。曲線が変曲点に達し、水平/平坦な傾斜になるのが早ければ早いほど、そのチャネルは支出を追加するごとに飽和していきます。各チャネルのレスポンスカーブを並べて比較することで、成果を改善するために、飽和したチャネルから飽和していないチャネルに費用を再配分する機会についての洞察を得ることができます：
 
-<img alt="saturationlineschart" src={useBaseUrl('/img/saturationlineschart.png')}。/>
+<img alt="saturationlineschart" src={https://facebookexperimental.github.io/Robyn/img/saturationlineschart.png}/>
 
 
 <em>広告の減衰率（アドストック率）</em>：このチャートは、各チャネルの平均的な減衰率を表しています。減衰率が高いほど、特定のチャネルが最初に露出した後の効果が長いことを意味します。
 
-<img alt="adstockinglineschart" src={useBaseUrl('/img/adstockinglineschart.png')}。/>
+<img alt="adstockinglineschart" src={https://facebookexperimental.github.io/Robyn/img/adstockinglineschart.png}/>
 
 
 
@@ -548,4 +547,4 @@ Robynの予算配分ツールは、非線形飽和関数（Hill）を解析的�
 - <em>初期の平均的な効果 vs 最適化後の平均的な効果</em>：上記と同様に、このグラフは初期と最適化後の期待効果を示します。当初の効果と最適化された効果の差は、前の箇条書きで示したように予算を切り替えた場合に予想される売上の変化の合計です。
 - <em>チャネル別のレスポンスカーブと平均支出</em>：<u>マーケティングミックスモデルのアウトプットの解釈</u>で説明したように、レスポンスカーブは、チャネルがどの程度飽和しているか、また、オリジナルと最適化された支出に対して、チャネルが曲線上のどの位置にあるかを示します。
 
-<img alt="予算配分チャート" src={useBaseUrl('/img/optimizer_new.png')} /></img />
+<img alt="予算配分チャート" src={https://facebookexperimental.github.io/Robyn/img/optimizer_new.png} /></img />
