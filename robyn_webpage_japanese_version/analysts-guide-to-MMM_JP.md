@@ -1,5 +1,4 @@
-本資料はRobyn公式ページの[アナリスト向けMMMガイド](https://facebookexperimental.github.io/Robyn/docs/analysts-guide-to-MMM/)の日本語版です。
----
+*本資料はRobyn公式ページの[アナリスト向けMMMガイド](https://facebookexperimental.github.io/Robyn/docs/analysts-guide-to-MMM/)の日本語版です。
 ## 背景
 ---
 
