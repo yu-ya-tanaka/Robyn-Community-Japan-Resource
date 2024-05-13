@@ -547,4 +547,5 @@ Robynの予算配分ツールは、非線形飽和関数（Hill）を解析的�
 - <em>初期の平均的な効果 vs 最適化後の平均的な効果</em>：上記と同様に、このグラフは初期と最適化後の期待効果を示します。当初の効果と最適化された効果の差は、前の箇条書きで示したように予算を切り替えた場合に予想される売上の変化の合計です。
 - <em>チャネル別のレスポンスカーブと平均支出</em>：<u>マーケティングミックスモデルのアウトプットの解釈</u>で説明したように、レスポンスカーブは、チャネルがどの程度飽和しているか、また、オリジナルと最適化された支出に対して、チャネルが曲線上のどの位置にあるかを示します。
 
-<img alt="予算配分チャート" src={https://facebookexperimental.github.io/Robyn/img/optimizer_new.png} /></img />
+<img alt="予算配分チャート" src={https://facebookexperimental.github.io/Robyn/img/optimizer_new.png} /></img/>
+![予算配分チャート](https://facebookexperimental.github.io/Robyn/img/optimizer_new.png)
