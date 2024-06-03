@@ -21,7 +21,7 @@
 ## A) CRANから最新の安定版をインストールする:
 # install.packages("Robyn")
 ## B) GitHubから最新の開発版をインストールする:
-# install.packages("remotes") # Install remotes first if you haven't already
+# install.packages("remotes") # remotesがインストールされていない場合、最初にインストールする
 remotes::install_github("facebookexperimental/Robyn/R")
 library(Robyn)
 
@@ -38,7 +38,7 @@ options(future.fork.enable = TRUE)
 # ローカルにファイルを作成しないようにするにはFALSEに設定する
 create_files <- TRUE
 
-## 重要：Robynを使用する前に、pythonライブラリ "Nevergrad "をインストールし、セットアップする必要があります。
+## 重要：Robynを使用する前に、pythonライブラリ "Nevergrad"をインストールし、セットアップする必要があります。
 ## ガイド: https://github.com/facebookexperimental/Robyn/blob/main/demo/install_nevergrad.R
 
 ################################################################
@@ -124,8 +124,8 @@ plot_saturation(plot = FALSE)
 ## 3. ハイパーパラメータの解釈と推奨:
 ## Geometricアドストック: thetaが唯一のパラメータで、固定減衰率を意味する。1日目に就航したTVCMが100円で、
 # シータが0.7だとすると、2日目は1日目から100*0.7=70円分の効果が持ち越され、3日目は2日目から70*0.7=49円分の
-# 効果が持ち越されます。メディアジャンルごとの一般的な値: TV c(0.3, 0.8)、OOH/印刷/ラジオ c(0.1, 0.4)、
-# デジタル c(0, 0.3)。また、週次を日次に変換するには、パラメータを(1/7)のべき乗に変換すればよく、
+# 効果が持ち越されます。メディアジャンルごとの一般的な値: TV: c(0.3, 0.8)、OOH/印刷/ラジオ: c(0.1, 0.4)、
+# デジタル: c(0, 0.3)。また、週次を日次に変換するには、パラメータを(1/7)のべき乗に変換すればよく、
 # 日次30%を週次に変換するには、0.3^(1/7)=0.84となります。
 
 ## Weibull CDFアドストック: 累積分布関数（CDF）のWeibull分布にはshapeとscaleの二つのパラメータがあり、
