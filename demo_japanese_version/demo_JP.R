@@ -17,12 +17,12 @@
 ################################################################
 #### ステップ 0: 環境設定
 
-## 以下の2つのソースのいずれかを使用して、Robynの最新バージョンをインストール、ロード、チェックする：
-## A) CRANから最新の安定版をインストールする：
+## 以下の2つのソースのいずれかを使用して、Robynの最新バージョンをインストール、ロード、チェックする:
+## A) CRANから最新の安定版をインストールする:
 # install.packages("Robyn")
-## B) GitHubから最新の開発版をインストールする：
+## B) GitHubから最新の開発版をインストールする:
 # install.packages("remotes") # Install remotes first if you haven't already
-# remotes::install_github("facebookexperimental/Robyn/R")
+remotes::install_github("facebookexperimental/Robyn/R")
 library(Robyn)
 
 # このデモを実行する前に、最新バージョンをインストールしているかどうか確認してください。そうでない場合はアップデートしてください。
@@ -54,8 +54,10 @@ head(dt_simulated_weekly)
 data("dt_prophet_holidays")
 head(dt_prophet_holidays)
 
-# 日本の祝日データのCSVファイルをダウンロードし、読み込む
-# CSVファイル: https://github.com/yu-ya-tanaka/Robyn-Community-Japan-Resource/blob/main/jp_holiday.csv
+## 日本の祝日を使いたい場合:
+# 下記URLから日本の祝日データのCSVファイルをダウンロード
+# https://github.com/yu-ya-tanaka/Robyn-Community-Japan-Resource/blob/main/jp_holiday.csv
+# ダウンロードしたCSVファイルを任意のフォルダに配置し読み込む。以下は例
 jp_holiday = read.csv('~/Desktop/Robyn Work/jp_holiday.csv')
 head(jp_holiday)
 
@@ -74,12 +76,12 @@ robyn_directory <- "~/Desktop"
 InputCollect <- robyn_inputs(
   dt_input = dt_simulated_weekly,
   # dt_holidays = dt_prophet_holidays,
-  dt_holidays = jp_holiday, # 上記で読み込んだ祝日データを指定
+  dt_holidays = jp_holiday, # 日本の祝日を使い場合。上記で読み込んだ祝日データを指定
   date_var = "DATE", # 日付の書式は "2020-01-01"
   dep_var = "revenue", # 目的変数は1つのみ
   dep_var_type = "revenue", # "revenue" (ROI)、もしくは"conversion" (CPA)を指定可能
   prophet_vars = c("trend", "season", "holiday"), # "trend"、"season"、"weekday"、"holiday"を指定可能。複数可
-  # prophet_country = "DE", # 国名コードを入力。dt_prophet_holidays をチェックしてください
+  # prophet_country = "DE", # 国名コードを入力。詳細は dt_prophet_holidays をチェックしてください。
   prophet_country = "JP", # 国コードを"JP"に指定
   context_vars = c("competitor_sales_B", "events"), # 例: 競合、割引率、失業率など
   paid_media_spends = c("tv_S", "ooh_S", "print_S", "facebook_S", "search_S"), # 必須項目
@@ -103,30 +105,28 @@ hyper_names(adstock = InputCollect$adstock, all_media = InputCollect$all_media)
 
 ## ハイパーパラメータを理解し設定するためのガイド
 
-## Robynのハイパーパラメータには4つの要素がある:
+## Robynのハイパーパラメータには4つの要素があります:
 ## - アドストックのパラメータ (theta or shape/scale)
 ## - 飽和曲線のパラメータ (alpha/gamma)
 ## - 正則化パラメータ(lambda)、手動設定は不要
 ## - 時系列検証のパラメータ (train_size)
 
-## 1. 重要: plot = TRUEにすることで、アドストックと飽和曲線の
-# ハイパーパラメータの影響についてのプロットを作成します。
+## 1. 重要: plot = TRUEにすることで、アドストックと飽和曲線のハイパーパラメータの影響を可視化したプロットを作成します。
 plot_adstock(plot = FALSE)
 plot_saturation(plot = FALSE)
 
 ## 2. 正しいハイパーパラメータ名を取得する:
-# paid_media_spendsとorganic_varsの変数はすべてハイパーパラメーターを必要とし、アドストックと飽和曲線
-# によって変換されます。
+# paid_media_spendsとorganic_varsの変数はすべてハイパーパラメーターを必要とし、アドストックと飽和曲線によって変換されます。
 # hyper_names(adstock = InputCollect$adstock, all_media = InputCollect$all_media)
-# を実行することで正しいメディアハイパーパラメータ名を取得できる。ハイパーパラメータの名前はすべて、
-# hyper_names()で取得できる名前と同じでなければならず、大文字と小文字は区別される。?hyper_names で関数の引数をチェックする。
+# を実行することで正しいメディアハイパーパラメータ名を取得できます。ハイパーパラメータの名前はすべて、
+# hyper_names()で取得できる名前と同じでなければならず、大文字と小文字は区別されます。?hyper_names で関数の引数をチェックできます。
 
 ## 3. ハイパーパラメータの解釈と推奨:
 ## Geometricアドストック: thetaが唯一のパラメータで、固定減衰率を意味する。1日目に就航したTVCMが100円で、
 # シータが0.7だとすると、2日目は1日目から100*0.7=70円分の効果が持ち越され、3日目は2日目から70*0.7=49円分の
-# 効果が持ち越される。メディアジャンルごとの一般的な値: TV c(0.3, 0.8)、OOH/印刷/ラジオ c(0.1, 0.4)、
+# 効果が持ち越されます。メディアジャンルごとの一般的な値: TV c(0.3, 0.8)、OOH/印刷/ラジオ c(0.1, 0.4)、
 # デジタル c(0, 0.3)。また、週次を日次に変換するには、パラメータを(1/7)のべき乗に変換すればよく、
-# 日次30%を週次に変換するには、0.3^(1/7)=0.84となる。
+# 日次30%を週次に変換するには、0.3^(1/7)=0.84となります。
 
 ## Weibull CDFアドストック: 累積分布関数（CDF）のWeibull分布にはshapeとscaleの二つのパラメータがあり、
 # 固定された減衰率を持つ幾何減衰と比較して柔軟な減衰率を持ちます。
@@ -212,7 +212,7 @@ print(InputCollect)
 
 ## モデルの補正（キャリブレーション）のガイド
 
-# 1. キャリブレーションを行うチャンネルはpaid_media_spendsまたはorganic_varsの名前である必要があります。
+# 1. キャリブレーションを行うチャネルはpaid_media_spendsまたはorganic_varsの名前である必要があります。
 # 2. キャリブレーションする際には、自由度が高いWeibull PDFアドストックを使用することを強く推奨します。
 # 3. リフトテストなどの実験的手法の結果を使用してMMMをキャリブレーションすることを強く推奨します。
 #    通常の実験タイプは、人ベース（例: Facebookのコンバージョンリフト）または地域ベース（例: Facebook GeoLift）です。
@@ -232,21 +232,21 @@ print(InputCollect)
 #    大文字は小文字を区別します。
 
 # calibration_input <- data.frame(
-#   # チャネル名、paid_media_varsに存在する値である必要がある
+#   # チャネル名、paid_media_varsに存在する値である必要があります
 #   channel = c("facebook_S",  "tv_S", "facebook_S+search_S", "newsletter"),
-#   # liftStartDateは入力データ範囲内でなければならない。
+#   # liftStartDateは入力データ範囲内でなければなりません
 #   liftStartDate = as.Date(c("2018-05-01", "2018-04-03", "2018-07-01", "2017-12-01")),
-#   # liftEndDateは入力データ範囲内でなければならない。
+#   # liftEndDateは入力データ範囲内でなければなりません
 #   liftEndDate = as.Date(c("2018-06-10", "2018-06-03", "2018-07-20", "2017-12-31")),
-#   # 提供された値は、モデル内の同じキャンペーンレベルでテストされ、dep_var_typeと同じ指標でなければならない。
+#   # 提供された値は、モデル内の同じキャンペーンレベルでテストされ、dep_var_typeと同じ指標でなければなりません
 #   liftAbs = c(400000, 300000, 700000, 200),
-#   # テストにおける支出: 各チャネルの日付範囲における支出がdt_inputと10%以内の誤差で一致している必要があります。
+#   # テストにおける支出: 各チャネルの日付範囲における支出がdt_inputと10%以内の誤差で一致している必要があります
 #   spend = c(421000, 7100, 350000, 0),
-#   # 信頼性: 頻度主義に基づくテスト結果の場合、1 - p値を使用できます。
+#   # 信頼性: 頻度主義に基づくテスト結果の場合、1 - p値を使用できます
 #   confidence = c(0.85, 0.8, 0.99, 0.95),
-#   # 測定されたKPI: dep_varと一致している必要があります。
+#   # 測定されたKPI: dep_varと一致している必要があります
 #   metric = c("revenue", "revenue", "revenue", "revenue"),
-#   # "immediate"または"total"のいずれか。Facebook Liftのような実験的入力には、"immediate"が推奨されます。
+#   # "immediate"または"total"のいずれか。Facebook Liftのような実験的入力には、"immediate"が推奨です
 #   calibration_scope = c("immediate", "immediate", "immediate", "immediate")
 # )
 # InputCollect <- robyn_inputs(InputCollect = InputCollect, calibration_input = calibration_input)
@@ -273,11 +273,11 @@ print(InputCollect)
 #   ,window_start = "2016-11-23"
 #   ,window_end = "2018-08-22"
 #   ,adstock = "geometric"
-#   ,hyperparameters = hyperparameters # as in 2a-2 above
-#   ,calibration_input = calibration_input # as in 2a-4 above
+#   ,hyperparameters = hyperparameters # 上記2a-2の通り
+#   ,calibration_input = calibration_input # 上記2a-4の通り
 # )
 
-#### 出稿金額と露出量の適合性をチェックする。paid_media_varsで露出量がインプットされている場合
+#### 出稿金額と露出量の適合性をチェックする（paid_media_varsで露出量がインプットされている場合）
 if (length(InputCollect$exposure_vars) > 0) {
   lapply(InputCollect$modNLS$plots, plot)
 }
@@ -292,12 +292,12 @@ if (length(InputCollect$exposure_vars) > 0) {
 ################################################################
 #### ステップ 3: 初期モデルを構築する
 
-## すべてのトライアルといてレーションを実行する。?robyn_run でパラメータ定義を確認可能
+## すべてのトライアルとイテレーションを実行する。?robyn_run でパラメータ定義を確認可能
 OutputModels <- robyn_run(
   InputCollect = InputCollect, # 全てのモデル仕様をフィードする
   cores = NULL, # デフォルトはNULLで利用可能な最大値 - 1が設定される
-  iterations = 2000, # ダミーデータセットでキャリブレーションを行い場合、2000が推奨
-  trials = 5, # ダミーデータセットには5が推奨
+  iterations = 2000, # ダミーデータセットでキャリブレーションを行わない場合、2000が推奨
+  trials = 5, # ダミーデータセットの場合、5が推奨
   ts_validation = TRUE, # NRMSEの検証のため、時系列に3分割を行う
   add_penalty_factor = FALSE # 実験的な機能なため、使用する際は注意
 )
@@ -339,7 +339,7 @@ print(OutputCollect)
 
 ## すべてのモデルのone-pagersを比較し、現実のビジネスを最もよく反映されるものを選択します
 print(OutputCollect)
-select_model <- "1_122_7" # OutputCollectから選択したモデルの1つを選択して続行します
+select_model <- "1_12_6" # OutputCollectから選択したモデルの1つを選択して続行します
 
 #### バージョン >=3.7.1: JSONのエクスポートとインポート（RDSファイルよりも高速で軽量）
 ExportedModel <- robyn_write(InputCollect, OutputCollect, select_model, export = create_files)
@@ -419,7 +419,7 @@ print(AllocatorCollect3)
 plot(AllocatorCollect3)
 
 # 例 4: ROASまたはCPAのターゲット値をカスタマイズする（json_fileを使用）
-json_file = "~/Desktop/Robyn_202302221206_init/RobynModel-1_117_11.json"
+json_file = "~/Desktop/Robyn_202406031014_init/RobynModel-1_12_6.json"
 AllocatorCollect4 <- robyn_allocator(
   json_file = json_file, # 予算配分のためにrobyn_write()で作成したjsonファイルを使用する
   dt_input = dt_simulated_weekly,
@@ -467,7 +467,7 @@ robyn_response(
 
 # InputCollectおよびExportedModelの仕様を含むJSONファイルを渡します。
 # 初期モデルでもリフレッシュ後のモデルでもかまいません。
-json_file <- "~/Desktop/Robyn_202211211853_init/RobynModel-1_100_6.json"
+json_file = "~/Desktop/Robyn_202406031014_init/RobynModel-1_12_6.json"
 RobynRefresh <- robyn_refresh(
   json_file = json_file,
   dt_input = dt_simulated_weekly,
@@ -478,7 +478,7 @@ RobynRefresh <- robyn_refresh(
 )
 
 # 同じアプローチに従って、更新されたモデルを再度更新します
-json_file_rf1 <- "~/Desktop/Robyn_202208231837_init/Robyn_202208231841_rf1/RobynModel-1_12_5.json"
+json_file_rf1 <- "~/Desktop/Robyn_202406031014_init/Robyn_202406031019_rf1/RobynModel-1_109_9.json"
 RobynRefresh <- robyn_refresh(
   json_file = json_file_rf1,
   dt_input = dt_simulated_weekly,
@@ -606,7 +606,7 @@ robyn_write(InputCollect, OutputCollect, select_model)
 ############ 読み込み ############
 # `InputCollect`および`OutputCollect`オブジェクトを再作成します
 # エクスポートされたモデル（初期または更新済み）のいずれかを選択します
-json_file <- "~/Desktop/Robyn_202208231837_init/RobynModel-1_100_6.json"
+json_file <- "~/Desktop/Robyn_202406031014_init/RobynModel-1_12_6.json"
 
 # オプショナル: ファイルに保存されたデータを手動で読み取り、確認します
 json_data <- robyn_read(json_file)
@@ -626,7 +626,7 @@ OutputCollectX <- robyn_run(
 
 # もしくはrobyn_recreate()を使うと両方を再作成できる。
 RobynRecreated <- robyn_recreate(
-  json_file = "~/Desktop/Robyn_202303131448_init/RobynModel-1_103_7.json",
+  json_file = "~/Desktop/Robyn_202406031014_init/RobynModel-1_12_6.json",
   dt_input = dt_simulated_weekly,
   dt_holidays = dt_prophet_holidays,
   quiet = FALSE)
