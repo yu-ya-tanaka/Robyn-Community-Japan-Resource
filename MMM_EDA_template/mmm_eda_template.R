@@ -230,8 +230,6 @@ p <- plot_ly(x = colnames(cor_matrix),
              type = "heatmap",
              colors = colorRamp(c("blue", "white", "red")))
 p <- p %>% layout(title = 'correlation matrix')
-
-
 p
 
 ##### 可視化4. KGI x 一つの説明変数の組み合わせで推移を確認
