@@ -24,7 +24,7 @@ InputCollect <- robyn_inputs(
   ,factor_vars = c("events") # context_varsとorganic_varsの中でファクター型の変数を指定
   ,window_start = "2016-01-01"
   ,window_end = "2018-12-31"
-  ,adstock = "geometric" # geometric、weibull_cdf、もくしはweibull_pdf
+  ,adstock = "geometric" # geometric、weibull_cdf、もしくはweibull_pdf
 )
 ```
 
